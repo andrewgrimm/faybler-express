@@ -1,6 +1,9 @@
 # faybler-express
 Language learning through fables
 
+### Setup Required for both dev and production
+- a firebase database will need to be created with the same project id as the google cloud project to which the google app engine instance belongs to. Generate an api key for the firebase database and save it in the root folder as "firebaseKey.json".
+
 ### Setup for development
  - This application requires a .env file in the root directory as below.
  ```
@@ -58,4 +61,3 @@ node_modules/
     "logsBucket": "gs://your-google-cloud-bucket-goes-here"
 }
 ```
-

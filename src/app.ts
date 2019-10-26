@@ -1,6 +1,6 @@
 // Mixing commonjs and es6 modules ?????
-import { Request, Response } from 'express';
-import { request } from 'http';
+import { getBook, postBook } from './controllers/booksController';
+
 const express = require('express');
 const http = require('http');
 const path = require('path');
@@ -9,16 +9,14 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 const httpServer = http.createServer(app);
-const PORT = process.env.PORT;
+const { PORT } = process.env;
 
+app.post('/books', postBook);
+app.get('/books/:id', getBook);
 app.use('/', express.static(path.join(__dirname, '../client')));
 
-// 404 page
-app.use('*', (req: Request, res: Response) => {
-  res.status(404).json({ Titile: 'Page not found' });
-});
-
 httpServer.listen(PORT, () => {
+  /* eslint-disable no-console */
   console.log('Your node js server is running on PORT: ', PORT);
 });
 

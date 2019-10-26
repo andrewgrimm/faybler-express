@@ -1,0 +1,146 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "title",
+    "description",
+    "tags",
+    "author",
+    "uploadDate",
+    "language",
+    "cover",
+    "contents",
+    "content"
+  ],
+  "properties": {
+    "title": {
+      "$id": "#/properties/title",
+      "type": "string",
+      "title": "The Title Schema",
+      "default": "",
+      "examples": [
+        "The Three Little Bears"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "description": {
+      "$id": "#/properties/description",
+      "type": "string",
+      "title": "The Description Schema",
+      "default": "",
+      "examples": [
+        "This is the description"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "tags": {
+      "$id": "#/properties/tags",
+      "type": "array",
+      "title": "The Tags Schema",
+      "items": {
+        "$id": "#/properties/tags/items",
+        "type": "string",
+        "title": "The Items Schema",
+        "default": "",
+        "examples": [
+          "someHashTagWithoutHash"
+        ],
+        "pattern": "^(.*)$"
+      }
+    },
+    "author": {
+      "$id": "#/properties/author",
+      "type": "object",
+      "title": "The Author Schema",
+      "required": [
+        "name",
+        "contentOwnerID"
+      ],
+      "properties": {
+        "name": {
+          "$id": "#/properties/author/properties/name",
+          "type": "string",
+          "title": "The Name Schema",
+          "default": "",
+          "examples": [
+            "Unknown"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "contentOwnerID": {
+          "$id": "#/properties/author/properties/contentOwnerID",
+          "type": "integer",
+          "title": "The Contentownerid Schema",
+          "default": 0,
+          "examples": [
+            0
+          ]
+        }
+      }
+    },
+    "uploadDate": {
+      "$id": "#/properties/uploadDate",
+      "type": "integer",
+      "title": "The Uploaddate Schema",
+      "default": 0,
+      "examples": [
+        0
+      ]
+    },
+    "language": {
+      "$id": "#/properties/language",
+      "type": "string",
+      "title": "The Language Schema",
+      "default": "",
+      "examples": [
+        "eng"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "cover": {
+      "$id": "#/properties/cover",
+      "type": "string",
+      "title": "The Cover Schema",
+      "default": "",
+      "examples": [
+        "someBase64String"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "contents": {
+      "$id": "#/properties/contents",
+      "type": "array",
+      "title": "The Contents Schema",
+      "items": {
+        "$id": "#/properties/contents/items",
+        "type": "string",
+        "title": "The Items Schema",
+        "default": "",
+        "examples": [
+          "chapter 1 Title",
+          "chapter 2 Title"
+        ],
+        "pattern": "^(.*)$"
+      }
+    },
+    "content": {
+      "$id": "#/properties/content",
+      "type": "array",
+      "title": "The Content Schema",
+      "items": {
+        "$id": "#/properties/content/items",
+        "type": "string",
+        "title": "The Items Schema",
+        "default": "",
+        "examples": [
+          "string containing chaper 1",
+          "string containing chaper 2"
+        ],
+        "pattern": "^(.*)$"
+      }
+    }
+  }
+}
