@@ -1,0 +1,19 @@
+# Binaries and compiled code
+node_modules/
+dist/app.js
+
+# This folder holds the client side application (React etc)
+client/
+
+# Environment variables for development
+.env
+
+# Google app engine files
+app.yaml
+.gcloudignore
+
+# IDE files
+.idea/
+
+# macos files
+.DS_Store
