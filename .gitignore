@@ -11,6 +11,7 @@ client/
 # Google app engine files
 app.yaml
 .gcloudignore
+cloudbuild.json
 
 # IDE files
 .idea/
