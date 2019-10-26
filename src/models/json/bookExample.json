@@ -1,0 +1,17 @@
+{
+    "title": "The Three Little Bears",
+    "description": "This is the description",
+    "tags": ["someHashTagWithoutHash"],
+    "author": { 
+        "name": "Unknown", 
+        "contentOwnerID": 0 
+    },
+    "uploadDate": 0,
+    "language": "eng",
+    "cover": "someBase64String",
+    "contents": ["chapter 1 Title", "chapter 2 Title"],
+    "content": [
+        "string containing chaper 1",
+        "string containing chaper 2"
+    ]
+}
