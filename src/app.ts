@@ -1,23 +1,26 @@
-// Mixing commonjs and es6 modules ?????
+import express from 'express';
+import http from 'http';
+import path from 'path';
+import bodyParser from 'body-parser';
 import { getBook, postBook } from './controllers/booksController';
+import ServerLogger from './loggers/ServerLogger';
 
-const express = require('express');
-const http = require('http');
-const path = require('path');
-const bodyParser = require('body-parser');
-
+const winstonLog = ServerLogger.getInstance();
+const logger = winstonLog.getLogger();
+const requestLogger = winstonLog.getRequestLogger();
 const app = express();
+
 app.use(bodyParser.json());
-const httpServer = http.createServer(app);
-const { PORT } = process.env;
+app.use(requestLogger);
 
 app.post('/books', postBook);
 app.get('/books/:id', getBook);
 app.use('/', express.static(path.join(__dirname, '../client')));
 
+const { PORT } = process.env;
+const httpServer = http.createServer(app);
 httpServer.listen(PORT, () => {
-  /* eslint-disable no-console */
-  console.log('Your node js server is running on PORT: ', PORT);
+  logger.info(`Express.js server up and running on PORT: ${PORT}`);
 });
 
 module.exports = app;
