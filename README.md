@@ -48,7 +48,7 @@ README.md
 node_modules/
 
 # Local credentials
-andrew-grimm-credentials.json
+local-credentials.json
  ```
 
  - A cloudbuild.json file such as the one below can be used to deploy to google app engine using google cloud build. N.B a storage bucket in google cloud will also need to be created and added to the "logsBucket" property. The cloudbuild.json file should be placed in the root folder.
