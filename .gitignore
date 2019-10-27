@@ -20,4 +20,5 @@ cloudbuild.json
 .DS_Store
 
 # Firebase api key
-firebaseKey.json
+local-credentials.json
+dev-server-credentials.json
