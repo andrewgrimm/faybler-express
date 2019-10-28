@@ -23,4 +23,4 @@ httpServer.listen(PORT, () => {
   logger.info(`Express.js server up and running on PORT: ${PORT}`);
 });
 
-module.exports = app;
+export default app;

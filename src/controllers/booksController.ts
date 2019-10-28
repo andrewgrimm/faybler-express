@@ -33,7 +33,7 @@ export const getBook = async (req: Request, res: Response) => {
         const book = doc.data();
         book.id = bookID;
         logger.info(`got book: ${bookID} json: ${JSON.stringify(book)}`);
-        res.status(201).json({ book });
+        res.status(200).json({ book });
       } else {
         logger.error(`The database returned an invalid book when getting book id ${bookID} json: ${JSON.stringify(doc.data())}.`);
         res.status(500).json({ message: 'Data returned from the database was not a valid book object' });
