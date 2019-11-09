@@ -16,6 +16,16 @@
     "content"
   ],
   "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "string",
+      "title": "The ID Schema",
+      "default": "",
+      "examples": [
+        "MMaTmwFPljQ0bV3TrLZM"
+      ],
+      "pattern": "^(?!\\.\\.?$)(?!.*__.*__)([^/]{1,1500})$"
+    },
     "title": {
       "$id": "#/properties/title",
       "type": "string",
