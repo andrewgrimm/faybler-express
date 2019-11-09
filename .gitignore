@@ -1,6 +1,6 @@
 # Binaries and compiled code
 node_modules/
-dist/app.js
+dist/
 
 # This folder holds the client side application (React etc)
 client/
@@ -15,6 +15,7 @@ cloudbuild.json
 
 # IDE files
 .idea/
+*.code-workspace
 
 # macos files
 .DS_Store
