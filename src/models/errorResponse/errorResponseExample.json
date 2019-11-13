@@ -1,0 +1,6 @@
+{
+  "status": "400",
+  "title": "Bad Request",
+  "description": "The post body contained an invalid book object.",
+  "correlationID": "33ac43ed-e93f-48b4-8c84-f47a5580f823" 
+}
