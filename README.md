@@ -22,7 +22,7 @@ DATABASE_URL=https://the-url-of-your-firebase-database-goes-here.com
 runtime: nodejs10
 
 env_variables:
-  GOOGLE_APPLICATION_CREDENTIALS: "dev-server-credentials.json"
+  GOOGLE_APPLICATION_CREDENTIALS: "production-server-credentials.json"
   PROJECT_ID: "your-project-id-goes-here"
   DATABASE_URL: "https://the-url-of-your-firebase-database-goes-here.com"
 

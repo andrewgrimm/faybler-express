@@ -18,7 +18,7 @@ app.use(requestLogger);
 
 app.post('/books', postBook);
 app.get('/books/:id', getBook);
-app.use('/', express.static(path.join(__dirname, '../client')));
+app.use('/', express.static(path.join(__dirname, '..', 'client')));
 
 const { PORT } = process.env;
 const httpServer = http.createServer(app);

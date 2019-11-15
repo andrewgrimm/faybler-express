@@ -2,22 +2,35 @@ import supertest from 'supertest';
 import app from '../app';
 import Book from '../models/book/book';
 import validBook from '../models/book/bookValidator';
-import invalidID from '../models/firebaseID/firebaseIDRegex';
+import validErrorResponse from '../models/errorResponse/errorResponseValidatior';
+import { validID } from '../models/firebaseID/firebaseIDValidator';
 
 const request = supertest(app);
 
-describe('GET /books', () => {
-  afterEach((done) => {
+describe('GET /books/:id', () => {
+  afterAll((done) => {
     app.close(done);
   });
 
   it('Get my favorite book', async () => {
     const result:any = await request.get('/books/MMaTmwFPljQ0bV3TrLZM');
-    const { book }: { book: Book } = JSON.parse(result.text);
+    const book: Book = JSON.parse(result.text);
     expect(result.statusCode).toEqual(200);
-    expect(book.id.search(invalidID)).toEqual(0);
+    expect(validID(book.id)).toEqual(true);
     expect(book.id).toEqual('MMaTmwFPljQ0bV3TrLZM');
-    expect(validBook(JSON.parse(result.text).book)).toEqual(true);
+    expect(validBook(book)).toEqual(true);
+  });
+
+  it('Throw error on invalid book id', async () => {
+    const result:any = await request.get('/books/__.__');
+    expect(result.statusCode).toEqual(400);
+    expect(validErrorResponse(JSON.parse(result.text))).toEqual(true);
+  });
+
+  it('Throw error on non existant book id', async () => {
+    const result:any = await request.get('/books/0000');
+    expect(result.statusCode).toEqual(404);
+    expect(validErrorResponse(JSON.parse(result.text))).toEqual(true);
   });
 });
 
@@ -48,7 +61,18 @@ describe('POST /books', () => {
     const { id } = JSON.parse(result.text);
     expect(result.text).toContain('success');
     expect(result.statusCode).toEqual(201);
-    expect(id.search(invalidID)).toEqual(0);
+    expect(validID(id)).toEqual(true);
+    done();
+  });
+
+  it('Throw error when posting invalid book', async (done) => {
+    const result:any = await request.post('/books')
+      .send({
+        foo: 'foo',
+        bar: 'bar',
+      });
+    expect(result.statusCode).toEqual(400);
+    expect(validErrorResponse(JSON.parse(result.text))).toEqual(true);
     done();
   });
 });

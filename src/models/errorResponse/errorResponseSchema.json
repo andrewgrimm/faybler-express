@@ -1,0 +1,55 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "status",
+    "title",
+    "description",
+    "correlationID"
+  ],
+  "properties": {
+    "status": {
+      "$id": "#/properties/status",
+      "type": "string",
+      "title": "The Status Schema",
+      "default": "",
+      "examples": [
+        "400"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "title": {
+      "$id": "#/properties/title",
+      "type": "string",
+      "title": "The Title Schema",
+      "default": "",
+      "examples": [
+        "Bad Request"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "description": {
+      "$id": "#/properties/description",
+      "type": "string",
+      "title": "The Description Schema",
+      "default": "",
+      "examples": [
+        "The post body contained an invalid book object."
+      ],
+      "pattern": "^(.*)$"
+    },
+    "correlationID": {
+      "$id": "#/properties/correlationID",
+      "type": "string",
+      "title": "The Correlationid Schema",
+      "default": "",
+      "examples": [
+        "33ac43ed-e93f-48b4-8c84-f47a5580f823"
+      ],
+      "pattern": "^(.*)$"
+    }
+  }
+}

@@ -5,7 +5,7 @@ import FirestoreDB from '../firestoreDatabase/FirestoreDB';
 import ServerLogger from '../loggers/ServerLogger';
 import validBook from '../models/book/bookValidator';
 import Book from '../models/book/book';
-import invalidID from '../models/firebaseID/firebaseIDRegex';
+import { validID } from '../models/firebaseID/firebaseIDValidator';
 
 const db = FirestoreDB.getInstance().getDatabase();
 const logger = ServerLogger.getInstance();
@@ -14,7 +14,7 @@ export const getBook = async (req: Request, res: Response) => {
   // Firebase document id must be of type string
   const bookID: string = req.params.id.toString();
 
-  if (bookID.search(invalidID)) {
+  if (!validID(bookID)) {
     logger.error(`A request to get a book with an invalid book id of ${bookID} has been made.`);
     const error = new ErrorResponse(
       '400',
@@ -41,7 +41,7 @@ export const getBook = async (req: Request, res: Response) => {
         const book: Book = doc.data() as Book;
         book.id = bookID;
         logger.info(`got book: ${bookID} json: ${JSON.stringify(book)}`);
-        res.status(200).json({ book });
+        res.status(200).json(book);
       } else {
         logger.error(`The database returned an invalid book when getting book id ${bookID} json: ${JSON.stringify(doc.data())}.`);
         const error = new ErrorResponse(
