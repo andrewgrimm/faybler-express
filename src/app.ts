@@ -2,20 +2,23 @@ import express from 'express';
 import http from 'http';
 import path from 'path';
 import bodyParser from 'body-parser';
-import { getBook, postBook } from './controllers/booksController';
+import httpContext from 'express-http-context';
 import ServerLogger from './loggers/ServerLogger';
+import correlationID from './loggers/correlationID';
+import { getBooks, getBook, postBook } from './controllers/booksController';
 
-const winstonLog = ServerLogger.getInstance();
-const logger = winstonLog.getLogger();
-const requestLogger = winstonLog.getRequestLogger();
+const logger = ServerLogger.getInstance();
+const requestLogger = logger.getRequestLogger();
 const app = express();
 
 app.use(bodyParser.json());
+app.use(httpContext.middleware);
+app.use(correlationID);
 app.use(requestLogger);
 
 app.post('/books', postBook);
 app.get('/books/:id', getBook);
-app.use('/', express.static(path.join(__dirname, '../client')));
+app.use('/', express.static(path.join(__dirname, '..', 'client')));
 
 const { PORT } = process.env;
 const httpServer = http.createServer(app);

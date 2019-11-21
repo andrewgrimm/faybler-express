@@ -19,11 +19,14 @@
   "homepage": "https://github.com/andrewgrimm/faybler-express",
   "dependencies": {
     "@google-cloud/logging-winston": "^3.0.0",
+    "@types/uuid": "^3.4.6",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-http-context": "^1.2.3",
     "firebase-admin": "^8.6.1",
     "jsonschema": "^1.2.4",
+    "uuid": "^3.3.3",
     "winston": "^3.2.1"
   },
   "devDependencies": {
