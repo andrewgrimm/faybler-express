@@ -16,6 +16,7 @@ app.use(httpContext.middleware);
 app.use(correlationID);
 app.use(requestLogger);
 
+app.get('/books', getBooks);
 app.post('/books', postBook);
 app.get('/books/:id', getBook);
 app.use('/', express.static(path.join(__dirname, '..', 'client')));

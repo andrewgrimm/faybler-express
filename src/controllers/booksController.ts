@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import firebase from 'firebase-admin';
+import firebase, { firestore } from 'firebase-admin';
 import ErrorResponse from '../models/errorResponse/ErrorResponse';
 import FirestoreDB from '../firestoreDatabase/FirestoreDB';
 import ServerLogger from '../loggers/ServerLogger';
@@ -9,6 +9,48 @@ import { validID } from '../models/firebaseID/firebaseIDValidator';
 
 const db = FirestoreDB.getInstance().getDatabase();
 const logger = ServerLogger.getInstance();
+
+export const getBooks = async (req: Request, res: Response) => {
+  let query: any = db.collection('books');
+
+  if (req.query.featured) {
+    query = query.where('tags', 'array-contains', 'featured');
+  }
+
+  if (req.query.language) {
+    query = query.where('language', '==', req.query.language);
+  }
+
+  if (req.query.author) {
+    query = query.where('authorUsername', '==', req.query.author);
+  }
+
+  query.get()
+    .then((querySnapshot: firestore.QuerySnapshot) => {
+      const books: Array<Book> = [];
+      querySnapshot.forEach((doc) => {
+        const book: Book = doc.data() as Book;
+        book.id = doc.id;
+
+        if (validBook(book)) {
+          books.push(book);
+        } else {
+          // log that there is a bad book in the library';
+          logger.error(`One of the books returned from the database was invalid. BookID: ${doc.id} json: ${JSON.stringify(doc.data())}.`);
+        }
+      });
+      res.status(200).json(books);
+    })
+    .catch((err: Error) => {
+      logger.warn(`A request to get books has been made but the database returned the error: ${err}`);
+      const error = new ErrorResponse(
+        '500',
+        'Database Error',
+        'The database returned an error whilst fetching books',
+      );
+      res.status(500).json(error.toJSON());
+    });
+};
 
 export const getBook = async (req: Request, res: Response) => {
   // Firebase document id must be of type string

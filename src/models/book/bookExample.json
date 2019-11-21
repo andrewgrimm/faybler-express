@@ -2,13 +2,11 @@
     "id": "MMaTmwFPljQ0bV3TrLZM",
     "title": "The Three Little Bears",
     "description": "This is the description",
-    "tags": ["someHashTagWithoutHash"],
-    "author": { 
-        "name": "Unknown", 
-        "contentOwnerID": 0 
-    },
+    "tags": ["someHashTagWithoutHash","featured"],
+    "authorUsername": "Unknown",
     "uploadDate": 0,
     "language": "eng",
+    "difficulty": 1,
     "cover": "someBase64String",
     "contents": ["chapter 1 Title", "chapter 2 Title"],
     "content": [

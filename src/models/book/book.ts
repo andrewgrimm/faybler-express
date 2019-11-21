@@ -3,12 +3,10 @@ export default interface Book {
   title: string,
   description: string,
   tags: Array<string>,
-  author: {
-      name: string,
-      contentOwnerID: number
-  },
+  authorUsername: string,
   uploadDate: number,
   language: string,
+  difficulty: number,
   cover: string,
   contents: Array<string>,
   content: Array<string>
